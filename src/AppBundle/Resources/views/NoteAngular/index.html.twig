@@ -1,0 +1,48 @@
+{% extends "AppBundle::base.html.twig" %}
+
+{% block title %}
+  Index
+{% endblock %}
+
+
+{% block content %}
+
+      <h1 class="title">{{ 'note.new.headline'|trans({}, 'AppBundle') }}</h1>
+
+    {%  if (form is defined) %}
+      <div ng-controller="FormNoteController as fnCtrl">
+    <form name="myform" id="myform" ng-submit="fnCtrl.save()" {{ form_enctype(form) }}>
+       
+
+    {{ form_errors(form) }}
+
+     <div class="form-group">
+        {{ form_label(form.message) }}
+        {{ form_errors(form.message) }}
+        {{ form_widget(form.message, {'attr': {'class': 'form-control', "ng-model":"fnCtrl.message"}}) }}
+    </div>
+
+
+    <div class="form-group">
+      <button type="submit" class="btn btn-default">
+        {% trans from 'AppBundle' %}Submit{% endtrans %}
+      </button>
+    </div>
+    
+{{ form_end(form) }}
+
+    </form>
+
+<div ng-controller="ListNoteController as lnCtrl">
+      <table class="table">
+        <tr ng-repeat="note in lnCtrl.notes">
+          <td>{[{note.message}]}</td>
+          <td><a href ng-click="lnCtrl.deleteNote(note);">delete</a></td>
+        </tr>
+      </table>
+    </div>
+    </div>
+    
+    {% endif %}
+  
+{% endblock %}
