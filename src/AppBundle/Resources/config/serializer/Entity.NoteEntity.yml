@@ -5,7 +5,7 @@ AppBundle\Entity\NoteEntity:
     id:
       exclude: true
       expose: true
-      access_type: public_method # defaults to property
+      access_type: 2 # defaults to property
       accessor: # access_type must be set to public_method
           getter: getId
           setter: setId
@@ -48,7 +48,7 @@ AppBundle\Entity\NoteEntity:
       href:
         route: get_note
         parameters:
-          id: expr(object.id)
+          id: expr(object.getId())
         absolute: true
     -
       rel: expr(object.getAssociatedEventsRel())
@@ -56,4 +56,4 @@ AppBundle\Entity\NoteEntity:
         content: expr(object.getAssociatedEvents())
         xmlElementName: events
         exclusion:
-          exclude_if: expr(object.id === 0)
+          exclude_if: expr(object.getId() === 0)

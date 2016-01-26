@@ -82,7 +82,7 @@ class NoteController extends FOSRestController
      * Get a single note.
      *
      * @ApiDoc(
-     *   output = "AppBundle\Model\Note",
+     *   output = "AppBundle\Entity\NoteEntity",
      *   statusCodes = {
      *     200 = "Returned when successful",
      *     404 = "Returned when the note is not found"
@@ -157,7 +157,7 @@ class NoteController extends FOSRestController
         $note = new NoteEntity();
         $form = $this->createForm(new NoteType(), $note);
 
-        sleep(3);
+        //sleep(3);
 
         $form->submit($request);
         if ($form->isValid()) {
